@@ -68,7 +68,7 @@ export default function Home() {
         onScrollToContact={() => handleScrollTo(contactRef)}
       />
 
-      <div className="mx-[10%]">
+      <div className="mx-[10%] overflow-hidden">
 
         <div ref={heroRef}>
           <HeroSection />

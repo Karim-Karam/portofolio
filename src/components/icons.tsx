@@ -7,7 +7,8 @@ import {
     faPython,
     faGithub,
     faLinkedin,
-    faTwitter
+    faTwitter,
+    faSquareJs
 } from '@fortawesome/free-brands-svg-icons';
 
 import {
@@ -19,21 +20,24 @@ import {
     faServer,
     faMobileScreen,
     faGlobe,
-    faDatabase
+    faDatabase,
+    faSearch,
+    faMobile
 } from '@fortawesome/free-solid-svg-icons';
 
 export const icons = {
     // Brand/Tech Icons
     html: faHtml5,
     css: faCss3Alt,
-    javascript: faJs,
+    javascript: faSquareJs,
     react: faReact,
     node: faNode,
     python: faPython,
     github: faGithub,
     linkedin: faLinkedin,
     twitter: faTwitter,
-
+    search: faSearch,
+    mobile: faMobile,
     // Solid Icons
     link: faLink,
     email: faEnvelope,

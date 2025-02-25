@@ -7,7 +7,7 @@ import { icons } from './icons';
 const HeroSection = () => {
 
     return (
-        <div className='py-10 w-full h-[100vh] max-h-[800px] flex gap-7'>
+        <div className='py-10 w-full  flex flex-col lg:flex-row gap-7'>
             {/* First Div - Animates from Left on Scroll */}
             <motion.div
                 initial={{ x: -100, opacity: 0 }}

@@ -8,7 +8,8 @@ import {
     faGithub,
     faLinkedin,
     faTwitter,
-    faSquareJs
+    faSquareJs,
+    faBootstrap
 } from '@fortawesome/free-brands-svg-icons';
 
 import {
@@ -22,7 +23,9 @@ import {
     faGlobe,
     faDatabase,
     faSearch,
-    faMobile
+    faMobile,
+    faCheckSquare,
+
 } from '@fortawesome/free-solid-svg-icons';
 
 export const icons = {
@@ -38,6 +41,7 @@ export const icons = {
     twitter: faTwitter,
     search: faSearch,
     mobile: faMobile,
+    bootstrap: faBootstrap,
     // Solid Icons
     link: faLink,
     email: faEnvelope,
@@ -47,5 +51,6 @@ export const icons = {
     backend: faServer,
     mobile: faMobileScreen,
     web: faGlobe,
-    database: faDatabase
+    database: faDatabase,
+    check: faCheckSquare,
 };

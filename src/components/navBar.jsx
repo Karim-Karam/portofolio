@@ -1,8 +1,10 @@
 import React from 'react'
 
 const NavBar = ({ activeSection, onScrollToHero, onScrollToProjects, onScrollToServices, onScrollToExperirnce, onScrollToContact }) => {
+
     return (
-        <div className='fixed right-10 p-1 rounded-[15px] top-[35vh] flex gap-3 py-2 flex-col text-white bg-[#161616]'>
+        <div style={{ zIndex: '1' }} className='fixed top-[90vh] px-4 lg:px-1 left-1/2 transform -translate-x-1/2 lg:top-[35vh] lg:right-10 lg:left-auto lg:translate-x-0 p-1 rounded-[15px] flex gap-3 py-2 lg:flex-col text-white bg-black lg:bg-[#161616] '>
+
             <button onClick={onScrollToHero} className={`hover:bg-secondary rounded-[20px] p-1 ${activeSection === "hero" ? "bg-secondary" : ""}`}>
                 <svg className="w-[28px] h-[28px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="0.5" d="m4 12 8-8 8 8M6 10.5V19a1 1 0 0 0 1 1h3v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h3a1 1 0 0 0 1-1v-8.5" />

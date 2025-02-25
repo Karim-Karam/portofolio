@@ -4,9 +4,8 @@ import NavBar from "../components/navBar";
 import HeroSection from "../components/heroSection";
 import ProjectsSection from "@/components/projectsSection";
 import ServicesSection from "@/components/servicesSection";
-import ExperirnceSection from "@/components/experienceSection";
+import ExperienceSection from "@/components/experienceSection";
 import ContactSection from "@/components/contactSection";
-
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState(null);
@@ -15,49 +14,59 @@ export default function Home() {
   const servicesRef = useRef(null);
   const experienceRef = useRef(null);
   const contactRef = useRef(null);
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    if (isClient) {
+      const sections = [
+        { id: "hero", ref: heroRef },
+        { id: "projects", ref: projectsRef },
+        { id: "services", ref: servicesRef },
+        { id: "experience", ref: experienceRef },
+        { id: "contact", ref: contactRef },
+      ];
+
+      const observerOptions = {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.3, // Reduced threshold for better responsiveness
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.getAttribute("data-section"));
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(({ ref, id }) => {
+        if (ref.current) {
+          ref.current.setAttribute("data-section", id); // Ensure data-section attribute is set
+          observer.observe(ref.current);
+        }
+      });
+
+      return () => {
+        sections.forEach(({ ref }) => {
+          if (ref.current) observer.unobserve(ref.current);
+        });
+      };
+    }
+  }, [isClient]);
 
   const handleScrollTo = (ref) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+
   useEffect(() => {
-    const sections = [
-      { id: "hero", ref: heroRef },
-      { id: "projects", ref: projectsRef },
-      { id: "services", ref: servicesRef },
-      { id: "experience", ref: experienceRef },
-      { id: "contact", ref: contactRef },
-    ];
+    setIsClient(true)
+  }, [])
 
-    const handleIntersect = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
-        }
-      });
-    };
-
-    const options = {
-      threshold: 0.6,
-    };
-    const observer = new IntersectionObserver(handleIntersect, options);
-    sections.forEach(({ id, ref }) => {
-      if (ref.current) {
-        ref.current.id = id;
-        observer.observe(ref.current);
-      }
-    });
-    return () => {
-      sections.forEach(({ ref }) => {
-        if (ref.current) {
-          observer.unobserve(ref.current);
-        }
-      });
-    };
-  }, []);
-
-
-
+  if (!isClient) {
+    return null
+  }
   return (
     <div>
       <NavBar
@@ -65,28 +74,30 @@ export default function Home() {
         onScrollToHero={() => handleScrollTo(heroRef)}
         onScrollToProjects={() => handleScrollTo(projectsRef)}
         onScrollToServices={() => handleScrollTo(servicesRef)}
-        onScrollToExperirnce={() => handleScrollTo(experienceRef)}
+        onScrollToExperience={() => handleScrollTo(experienceRef)}
         onScrollToContact={() => handleScrollTo(contactRef)}
       />
 
       <div className="mx-[10%] overflow-hidden">
-
-        <div ref={heroRef}>
+        <section ref={heroRef} data-section="hero">
           <HeroSection />
-        </div>
+        </section>
 
-        <div ref={projectsRef}>
+        <section ref={projectsRef} data-section="projects">
           <ProjectsSection />
-        </div>
-        <div ref={servicesRef}>
+        </section>
+
+        <section ref={servicesRef} data-section="services">
           <ServicesSection />
-        </div>
-        <div ref={experienceRef}>
-          <ExperirnceSection />
-        </div>
-        <div ref={contactRef}>
+        </section>
+
+        <section ref={experienceRef} data-section="experience">
+          <ExperienceSection />
+        </section>
+
+        <section ref={contactRef} data-section="contact">
           <ContactSection />
-        </div>
+        </section>
       </div>
     </div>
   );

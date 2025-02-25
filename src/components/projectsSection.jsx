@@ -8,42 +8,51 @@ const ProjectsSection = () => {
         {
             id: 1,
             image: 'images/lmsportal.png',
-            name: 'Project 1',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            name: 'labs for home',
+            description: 'Lms Portal designed for seamless course management, user engagement, and efficient learning. It enables instructors to create, manage, and deliver content while providing students with interactive learning experiences, progress tracking, and assessment tools for an optimized education experience.',
             technologies: [{ icon: icons.javascript, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }],
-            link: '#'
+            link: 'https://lms.siminds.net/'
         },
         {
             id: 2,
             image: 'images/siminds.png',
-            name: 'Project 2',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            name: 'Siminds',
+            description: 'Siminds, a UK-based company, develops cutting-edge virtual reality and simulation solutions for industries like Oil & Gas, Medicine, and Science. Combining expertise and innovation, it revolutionizes training by connecting global tellectuals through state-of-the-art simulation technology.',
             technologies: [{ icon: icons.javascript, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }],
-            link: '#'
+            link: 'https://www.siminds.com/'
         },
+
         {
             id: 3,
-            image: 'images/arcon.png',
-            name: 'Project 3',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            image: 'images/errcf.png',
+            name: 'Egyptian Robotics & RC Sports Federation',
+            description: 'The Federation empowers youth in Robotics, AI, RC Sports, Unmanned Vehicles, and Programming through training and competitions. We drive digital transformation, enhance global competitiveness, and support Egypt’s Vision 2030, positioning Egypt as a regional innovation hub for sustainable development.',
             technologies: [{ icon: icons.javascript, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }],
-            link: '#'
+            link: 'https://staging.errcsf.org/'
         },
         {
             id: 4,
-            image: 'images/lmsportal.png',
-            name: 'Project 4',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            image: 'images/arcon.png',
+            name: 'Arcon',
+            description: 'Arcon delivers innovative solutions to enhance productivity and growth across sectors. Committed to bridging technology and education, it fosters creativity and learning, creating transformative environments where individuals and businesses thrive.',
             technologies: [{ icon: icons.javascript, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }],
-            link: '#'
+            link: 'https://www.arconcorp.com/'
         },
         {
             id: 5,
-            image: 'images/lmsportal.png',
-            name: 'Project 4',
-            description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+            image: 'images/movies.png',
+            name: 'movies app',
+            description: 'A movies site offering a vast collection of films with detailed information, including ratings, reviews, cast, and trailers.Users can explore genres, discover new releases, and stay updated on their favorite movies for an enhanced viewing experience.',
             technologies: [{ icon: icons.javascript, color: "red" }, { icon: icons.database, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }],
-            link: '#'
+            link: 'https://cimaforu.netlify.app/'
+        },
+        {
+            id: 6,
+            image: 'images/market.png',
+            name: 'E–commerse site',
+            description: 'An e-commerce site enabling seamless online shopping with a wide range of products, secure payments, and fast delivery. It offers a user-friendly experience, personalized recommendations, and efficient order management for a convenient and enjoyable shopping journey.',
+            technologies: [{ icon: icons.javascript, color: "red" }, { icon: icons.database, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }],
+            link: 'https://marketoz.netlify.app/'
         }
     ];
 

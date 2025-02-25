@@ -11,7 +11,10 @@ const ProjectsSection = () => {
             image: 'images/lmsportal.png',
             name: 'Labs for Home',
             description: 'LMS Portal designed for seamless course management, user engagement, and efficient learning.',
-            technologies: [{ icon: icons.javascript, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }],
+            technologies: [],
+            hasMui: true,
+            hasNext: true,
+            hasTs: true,
             link: 'https://lms.siminds.net/'
         },
         {
@@ -19,7 +22,7 @@ const ProjectsSection = () => {
             image: 'images/siminds.png',
             name: 'Siminds',
             description: 'Siminds, a UK-based company, develops cutting-edge virtual reality and simulation solutions.',
-            technologies: [{ icon: icons.javascript, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }],
+            technologies: [{ icon: icons.html, color: "#e34c26" }, { icon: icons.css, color: "#61DBFB" }, { icon: icons.javascript, color: "#f0db4f" }],
             link: 'https://www.siminds.com/'
         },
         {
@@ -27,7 +30,9 @@ const ProjectsSection = () => {
             image: 'images/errcf.png',
             name: 'Egyptian Robotics & RC Sports Federation',
             description: 'The Federation empowers youth in Robotics, AI, RC Sports, and Unmanned Vehicles.',
-            technologies: [{ icon: icons.javascript, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }],
+            technologies: [{ icon: icons.html, color: "#e34c26" }, { icon: icons.javascript, color: "#f0db4f" }],
+            hasTailwind: true,
+            hasFire: true,
             link: 'https://staging.errcsf.org/'
         },
         {
@@ -35,7 +40,8 @@ const ProjectsSection = () => {
             image: 'images/arcon.png',
             name: 'Arcon',
             description: 'Arcon delivers innovative solutions to enhance productivity and growth across sectors.',
-            technologies: [{ icon: icons.javascript, color: "#61DAFB" }, { icon: icons.database, color: "#61DAFB" }],
+            hasNext: true,
+            technologies: [{ icon: icons.css, color: "#61DBFB" }, { icon: icons.bootstrap, color: "#7618F6" }],
             link: 'https://www.arconcorp.com/'
         },
         {
@@ -43,7 +49,7 @@ const ProjectsSection = () => {
             image: 'images/movies.png',
             name: 'Movies App',
             description: 'A movies site offering a vast collection of films with ratings, reviews, and trailers.',
-            technologies: [{ icon: icons.javascript, color: "red" }, { icon: icons.database, color: "#61DAFB" }],
+            technologies: [{ icon: icons.bootstrap, color: "#7618F6" }, { icon: icons.react, color: "#61DBFB" }],
             link: 'https://cimaforu.netlify.app/'
         },
         {
@@ -51,7 +57,7 @@ const ProjectsSection = () => {
             image: 'images/market.png',
             name: 'E-Commerce Site',
             description: 'An e-commerce site with a user-friendly experience, secure payments, and fast delivery.',
-            technologies: [{ icon: icons.javascript, color: "red" }, { icon: icons.database, color: "#61DAFB" }],
+            technologies: [{ icon: icons.bootstrap, color: "#7618F6" }, { icon: icons.react, color: "#61DBFB" }],
             link: 'https://marketoz.netlify.app/'
         }
     ];
@@ -80,6 +86,10 @@ const ProjectsSection = () => {
                         <p className='text-sm text-gray-400'>{project.description}</p>
 
                         <div className="bg-black flex gap-2 px-2 py-1 mt-3 rounded-[20px]">
+                            {project.hasMui && <img src='/mui.svg' width={20} height={20} alt='React' className=' transition-transform duration-300 hover:-translate-y-[5px]' />}
+                            {project.hasTailwind && <img src='/tcss.svg' width={20} height={20} alt='React' className=' transition-transform duration-300 hover:-translate-y-[5px]' />}
+                            {project.hasTs && <img src='/ts.svg' width={20} height={20} alt='React' className=' transition-transform duration-300 hover:-translate-y-[5px]' />}
+
                             {project.technologies.map((tech, index) => (
                                 <FontAwesomeIcon
                                     key={index}
@@ -87,6 +97,9 @@ const ProjectsSection = () => {
                                     className={`text-[${tech.color}] text-lg transition-transform duration-300 hover:-translate-y-[5px]`}
                                 />
                             ))}
+                            {project.hasNext && <img src='/nextq.svg' width={20} height={20} alt='React' className='bg-white p-[1px] rounded-[50%] transition-transform duration-300 hover:-translate-y-[5px]' />}
+                            {project.hasFire && <img src='/firebase.svg' width={13} height={10} alt='React' className=' transition-transform duration-300 hover:-translate-y-[5px]' />}
+
                         </div>
                         <a href={project.link} target="_blank" rel="noopener noreferrer" className='text-sm text-gray-400 mt-3 flex items-center gap-2'>
                             <FontAwesomeIcon icon={icons.link} />Visit Project

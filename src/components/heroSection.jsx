@@ -60,30 +60,41 @@ const HeroSection = () => {
                 <div className='flex justify-center gap-4 my-4'>
                     <FontAwesomeIcon
                         icon={icons.html}
-                        className={`text-[#e34c26] text-[2.5rem] transition-transform duration-300 hover:-translate-y-[5px]`}
+                        className={`text-[#e34c26] text-[2.8rem] transition-transform duration-300 hover:-translate-y-[5px]`}
                     />
                     <FontAwesomeIcon
                         icon={icons.css}
-                        className={`text-[#61DBFB] text-[2.5rem] transition-transform duration-300 hover:-translate-y-[5px]`}
+                        className={`text-[#61DBFB] text-[2.8rem] transition-transform duration-300 hover:-translate-y-[5px]`}
                     />
                     <FontAwesomeIcon
                         icon={icons.bootstrap}
-                        className={`text-[#7618F6] text-[2.5rem] transition-transform duration-300 hover:-translate-y-[5px]`}
+                        className={`text-[#7618F6] text-[2.8rem] transition-transform duration-300 hover:-translate-y-[5px]`}
                     />
                     <FontAwesomeIcon
                         icon={icons.javascript}
-                        className={`text-[#f0db4f] text-[2.5rem] transition-transform duration-300 hover:-translate-y-[5px]`}
+                        className={`text-[#f0db4f] text-[2.8rem] transition-transform duration-300 hover:-translate-y-[5px]`}
                     />
                 </div>
                 <div className='flex justify-center gap-4 my-4'>
                     <img src='/ts.svg' width={40} height={40} alt='React' className=' transition-transform duration-300 hover:-translate-y-[5px]' />
                     <img src='/mui.svg' width={40} height={40} alt='React' className=' transition-transform duration-300 hover:-translate-y-[5px]' />
+                    <img src='/tcss.svg' width={40} height={40} alt='React' className=' transition-transform duration-300 hover:-translate-y-[5px]' />
+
+                    <FontAwesomeIcon
+                        icon={icons.github}
+                        className={`text-white text-[2.5rem] transition-transform duration-300 hover:-translate-y-[5px]`}
+                    />
+
+                </div>
+                <div className='flex justify-center gap-4 my-4'>
+                    <img src='/redux.svg' width={40} height={40} alt='React' className=' transition-transform duration-300 hover:-translate-y-[5px]' />
 
                     <FontAwesomeIcon
                         icon={icons.react}
                         className={`text-[#61DBFB] text-[2.5rem] transition-transform duration-300 hover:-translate-y-[5px]`}
                     />
                     <img src='/nextq.svg' width={40} height={40} alt='React' className='bg-white p-1 rounded-[50%] transition-transform duration-300 hover:-translate-y-[5px]' />
+                    <img src='/firebase.svg' width={30} height={30} alt='React' className=' transition-transform duration-300 hover:-translate-y-[5px]' />
 
                 </div>
 

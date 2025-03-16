@@ -9,7 +9,9 @@ import {
     faLinkedin,
     faTwitter,
     faSquareJs,
-    faBootstrap
+    faBootstrap,
+
+
 } from '@fortawesome/free-brands-svg-icons';
 
 import {
@@ -25,7 +27,8 @@ import {
     faSearch,
     faMobile,
     faCheckSquare,
-
+    faLocationDot,
+    faPhone
 } from '@fortawesome/free-solid-svg-icons';
 
 export const icons = {
@@ -42,6 +45,8 @@ export const icons = {
     search: faSearch,
     mobile: faMobile,
     bootstrap: faBootstrap,
+    location: faLocationDot,
+    phone: faPhone,
     // Solid Icons
     link: faLink,
     email: faEnvelope,

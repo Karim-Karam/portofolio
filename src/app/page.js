@@ -80,7 +80,7 @@ export default function Home() {
 
       <div className="mx-[10%] overflow-hidden">
         <section ref={heroRef} data-section="hero">
-          <HeroSection />
+          <HeroSection onScrollToProjects={() => handleScrollTo(projectsRef)} />
         </section>
 
         <section ref={projectsRef} data-section="projects">

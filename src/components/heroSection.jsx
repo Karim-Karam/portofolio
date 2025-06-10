@@ -1,156 +1,180 @@
 'use client';
-import React, { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { icons } from './icons'; // Ensure this path is correct
 
-// --- Reusable Interactive 3D Card Component ---
-const InteractiveCard = ({ children, className }) => {
-    const ref = useRef(null);
-
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const springConfig = { stiffness: 150, damping: 20 };
-    const mouseXSpring = useSpring(mouseX, springConfig);
-    const mouseYSpring = useSpring(mouseY, springConfig);
-
-    const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['12deg', '-12deg']);
-    const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-12deg', '12deg']);
-
-    const spotlightX = useTransform(mouseX, (val) => `${val}px`);
-    const spotlightY = useTransform(mouseY, (val) => `${val}px`);
-
-
-    const handleMouseMove = (e) => {
-        if (!ref.current) return;
-        const { left, top, width, height } = ref.current.getBoundingClientRect();
-        const x = (e.clientX - left - width / 2) / (width / 2);
-        const y = (e.clientY - top - height / 2) / (height / 2);
-        mouseX.set(x * width * 0.5);
-        mouseY.set(y * height * 0.5);
-    };
-
-    const handleMouseLeave = () => {
-        mouseX.set(0);
-        mouseY.set(0);
-    };
-
-    return (
-        <motion.div
-            ref={ref}
-            onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
-            style={{
-                rotateX,
-                rotateY,
-                transformStyle: 'preserve-3d',
-            }}
-            className={`relative ${className}`}
-        >
-            {/* Dynamic Spotlight Effect */}
-            <motion.div
-                className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                style={{
-                    background: 'radial-gradient(400px at var(--spotlight-x) var(--spotlight-y), rgba(167, 27, 16, 0.2), transparent 40%)',
-                    '--spotlight-x': spotlightX,
-                    '--spotlight-y': spotlightY,
-                }}
-            />
-            {children}
-        </motion.div>
-    );
+// Animation Variants for Framer Motion
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.3,
+        },
+    },
 };
 
+const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: { type: 'spring', stiffness: 100 },
+    },
+};
 
-// --- Main Hero Section Component ---
-const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
-const itemVariants = { hidden: { y: 20, opacity: 0 }, visible: { y: 0, opacity: 1 } };
+const letterVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.5,
+            ease: 'easeOut'
+        },
+    },
+};
+
+const skillIconVariants = {
+    hidden: { scale: 0.5, opacity: 0 },
+    visible: {
+        scale: 1,
+        opacity: 1,
+        transition: { type: 'spring', stiffness: 150, damping: 10 }
+    }
+};
 
 const HeroSection = ({ onScrollToProjects }) => {
     const name = "Karim Karam";
-    const skills = [
-        { icon: icons.react, color: "#61DBFB" },
-        { src: "/nextq.svg", alt: "Next.js", isImg: true, className: "bg-white p-1 rounded-full" },
-        { src: "/ts.svg", alt: "TypeScript", isImg: true },
-        { src: "/redux.svg", alt: "Redux", isImg: true },
-        { icon: icons.javascript, color: "#f0db4f" },
-        { src: "/tcss.svg", alt: "Tailwind CSS", isImg: true },
-        { src: "/mui.svg", alt: "Material UI", isImg: true },
-        { icon: icons.html, color: "#e34c26" },
-        { icon: icons.css, color: "#61DBFB" },
-        { icon: icons.bootstrap, color: "#7618F6" },
-        { src: "/firebase.svg", alt: "Firebase", isImg: true },
-        { icon: icons.github, color: "#ffffff" },
-        { src: "/fig.svg", alt: "Figma", isImg: true },
-        { src: "/pm.svg", alt: "Postman", isImg: true },
-    ];
+
+    // A reusable component for skill icons to keep the code DRY
+    const SkillIcon = ({ icon, color, custom, alt, src, className = '' }) => (
+        <motion.div
+            variants={skillIconVariants}
+            whileHover={{ y: -5, scale: 1.1, transition: { duration: 0.2 } }}
+            className={`flex items-center justify-center ${className} `}
+        >
+            {src ? (
+                <img src={src} alt={alt} className="w-10 h-10" />
+            ) : (
+                <FontAwesomeIcon icon={icon} style={{ color }} className="text-4xl" />
+            )}
+        </motion.div>
+    );
 
     return (
-        <div className='py-10 w-full flex flex-col lg:flex-row items-stretch gap-8 font-montserrat' style={{ perspective: '1200px' }}>
+        <div className='py-10 w-full flex flex-col lg:flex-row items-stretch gap-8 font-montserrat'>
             {/* Left Column - Profile Card */}
-            <InteractiveCard className="group flex-none lg:w-1/3 bg-primary rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-2xl">
-                <div style={{ transform: 'translateZ(50px)' }}>
-                    <div className="w-48 h-48 rounded-full bg-[#2a2a2a] mb-6 overflow-hidden border-4 border-[#A71B10]">
-                        <img src="oo.png" alt="Karim Karam" className="w-full h-full object-cover" />
-                    </div>
-                </div>
+            <motion.div
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="sm:bg-primary flex-none lg:w-1/3 rounded-3xl p-6 flex flex-col items-center justify-center text-center shadow-lg"
+            >
+                <motion.div
+                    className="w-48 h-48 rounded-full bg-[#2a2a2a] mb-6 overflow-hidden border-4 border-[#A71B10]"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.5, type: 'spring', stiffness: 120 }}
+                >
+                    {/* Replace with your actual image */}
+                    <img src="oo.png" alt="Karim Karam" className="w-full h-full object-cover" />
+                </motion.div>
 
-                <h1 className="text-4xl font-bold tracking-wider" style={{ transform: 'translateZ(40px)' }}>
-                    {name}
-                </h1>
+                <motion.div
+                    className="text-4xl font-bold tracking-wider"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    {name.split("").map((char, index) => (
+                        <motion.span key={index} variants={letterVariants} className="inline-block">
+                            {char === " " ? "\u00A0" : char}
+                        </motion.span>
+                    ))}
+                </motion.div>
 
-                <p className="text-lg text-[#A71B10] font-semibold mt-2" style={{ transform: 'translateZ(30px)' }}>
+                <motion.p
+                    className="text-lg text-[#A71B10] font-semibold mt-2"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 1.5, duration: 0.5 }}
+                >
                     Front-End Developer
-                </p>
+                </motion.p>
 
-                <div className="flex gap-6 mt-8" style={{ transform: 'translateZ(50px)' }}>
-                    <a href="https://www.linkedin.com/in/karim-karam-33a36b174/" target="_blank" rel="noopener noreferrer" className="text-[#0077B5] text-3xl hover:text-white transition-colors">
+                <motion.div
+                    className="flex gap-6 mt-8"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                >
+                    <motion.a href="https://www.linkedin.com/in/karim-karam-33a36b174/" target="_blank" rel="noopener noreferrer" variants={itemVariants} className="text-[#0077B5] text-3xl hover:text-white transition-colors">
                         <FontAwesomeIcon icon={icons.linkedin} />
-                    </a>
-                    <a href="https://github.com/Karim-Karam" target="_blank" rel="noopener noreferrer" className="text-white text-3xl hover:text-[#A71B10] transition-colors">
+                    </motion.a>
+                    <motion.a href="https://github.com/Karim-Karam" target="_blank" rel="noopener noreferrer" variants={itemVariants} className="text-white text-3xl hover:text-[#A71B10] transition-colors">
                         <FontAwesomeIcon icon={icons.github} />
-                    </a>
-                </div>
-            </InteractiveCard>
+                    </motion.a>
+                </motion.div>
+            </motion.div>
 
             {/* Right Column - Info Card */}
-            <InteractiveCard className="group flex-1 bg-primary rounded-3xl p-8 shadow-2xl flex flex-col">
-                <motion.div initial="hidden" animate="visible" variants={containerVariants} className="h-full flex flex-col">
-                    <motion.h1 variants={itemVariants} className="text-3xl font-bold tracking-wider mb-4" style={{ transform: 'translateZ(30px)' }}>ABOUT ME</motion.h1>
-                    <motion.p variants={itemVariants} className='text-gray-400 leading-relaxed' style={{ transform: 'translateZ(20px)' }}>
-                        I am a results-driven Front-End Developer with over two years of hands-on experience specializing in React.js and Next.js. Passionate about building high-performance, responsive, and user-centric web applications through clean, maintainable, and efficient code.
-                    </motion.p>
+            <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="sm:bg-primary flex-1 rounded-3xl p-8 shadow-lg flex flex-col"
+            >
+                <motion.h1 variants={itemVariants} className="text-3xl font-bold tracking-wider mb-4">ABOUT ME</motion.h1>
+                <motion.p variants={itemVariants} className='text-gray-400 leading-relaxed'>
+                    I am a results-driven Front-End Developer with over two years of hands-on experience specializing in React.js and Next.js. Passionate about building high-performance, responsive, and user-centric web applications through clean, maintainable, and efficient code.
+                </motion.p>
 
-                    <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mt-6" style={{ transform: 'translateZ(25px)' }}>
-                        <a href='https://drive.usercontent.google.com/download?id=1LTxxuAetY94qhPZgo9XeFFrZ3oiempUA&export=download&authuser=0&confirm=t&uuid=345745c2-2f69-4094-911b-26fcba460027&at=AEz70l6slISazWWy8MMr7mKJh4Ct:1740492798930' className='bg-[#A71B10] text-white font-bold px-6 py-3 rounded-full hover:bg-black transition-all duration-300 text-center shadow-md hover:shadow-lg'>
-                            Download CV
-                        </a>
-                        <button onClick={onScrollToProjects} className="bg-gray-700 text-white font-bold px-6 py-3 rounded-full hover:bg-gray-600 transition-all duration-300 text-center shadow-md hover:shadow-lg">
-                            View My Work
-                        </button>
-                    </motion.div>
-
-                    <motion.div variants={itemVariants} className="h-[1px] bg-gray-700 my-8"></motion.div>
-
-                    <motion.h1 variants={itemVariants} className='font-bold text-2xl mb-4 font-mono tracking-wider' style={{ transform: 'translateZ(30px)' }}>SKILLS</motion.h1>
-                    <motion.div variants={containerVariants} className='grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 gap-6' style={{ transform: 'translateZ(20px)' }}>
-                        {skills.map((skill, index) => (
-                            <motion.div key={index} variants={itemVariants} whileHover={{ y: -5, scale: 1.1 }} className="flex items-center justify-center">
-                                {skill.isImg ? (
-                                    <img src={skill.src} alt={skill.alt} className={`w-10 h-10 ${skill.className || ''}`} />
-                                ) : (
-                                    <FontAwesomeIcon icon={skill.icon} style={{ color: skill.color }} className="text-4xl" />
-                                )}
-                            </motion.div>
-                        ))}
-                    </motion.div>
-
-                    <motion.div variants={itemVariants} className='mt-auto pt-8 text-center text-sm text-gray-500' style={{ transform: 'translateZ(10px)' }}>
-                        Contact: <a href="mailto:karamkarim454@gmail.com" className="text-[#A71B10] hover:underline">karamkarim454@gmail.com</a> | Cairo, Egypt
-                    </motion.div>
+                <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mt-6">
+                    <a
+                        href='https://drive.usercontent.google.com/download?id=1LTxxuAetY94qhPZgo9XeFFrZ3oiempUA&export=download&authuser=0&confirm=t&uuid=345745c2-2f69-4094-911b-26fcba460027&at=AEz70l6slISazWWy8MMr7mKJh4Ct:1740492798930'
+                        className='bg-[#A71B10] text-white font-bold px-6 py-3 rounded-full hover:bg-black transition-all duration-300 text-center shadow-md hover:shadow-lg'
+                    >
+                        Download CV
+                    </a>
+                    <button
+                        onClick={onScrollToProjects}
+                        className="bg-gray-700 text-white font-bold px-6 py-3 rounded-full hover:bg-gray-600 transition-all duration-300 text-center shadow-md hover:shadow-lg"
+                    >
+                        View My Work
+                    </button>
                 </motion.div>
-            </InteractiveCard>
+
+                <motion.div variants={itemVariants} className="h-[1px] bg-gray-700 my-8"></motion.div>
+
+                <motion.h1 variants={itemVariants} className='font-bold text-2xl mb-4 font-mono tracking-wider'>SKILLS</motion.h1>
+                <motion.div variants={containerVariants} className='grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6'>
+                    {/* Replaced with the reusable SkillIcon component */}
+                    <SkillIcon icon={icons.react} color="#61DBFB" />
+                    <SkillIcon src="/nextq.svg" alt="Next.js" className="bg-white rounded-full " />
+                    <SkillIcon src="/ts.svg" alt="TypeScript" />
+                    <SkillIcon src="/redux.svg" alt="Redux" />
+                    <SkillIcon icon={icons.javascript} color="#f0db4f" />
+                    <SkillIcon src="/tcss.svg" alt="Tailwind CSS" />
+                    <SkillIcon src="/mui.svg" alt="Material UI" />
+                    <SkillIcon icon={icons.html} color="#e34c26" />
+                    <SkillIcon icon={icons.css} color="#61DBFB" />
+                    <SkillIcon icon={icons.bootstrap} color="#7618F6" />
+                    <SkillIcon src="/firebase.svg" alt="Firebase" />
+                    <SkillIcon icon={icons.github} color="#ffffff" />
+                    <SkillIcon src="/fig.svg" alt="Figma" />
+                    <SkillIcon src="/pm.svg" alt="Postman" />
+                </motion.div>
+
+                <motion.div variants={itemVariants} className='mt-auto pt-8'>
+                    <p className='text-gray-500 font-montserrat text-center text-sm'>
+                        Contact: <a href="mailto:karamkarim454@gmail.com" className="text-[#A71B10] hover:underline">karamkarim454@gmail.com</a> | Cairo, Egypt
+                    </p>
+                </motion.div>
+
+            </motion.div>
         </div>
     );
 };

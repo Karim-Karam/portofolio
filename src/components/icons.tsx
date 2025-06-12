@@ -28,7 +28,8 @@ import {
     faMobile,
     faCheckSquare,
     faLocationDot,
-    faPhone
+    faPhone,
+    faVideo
 } from '@fortawesome/free-solid-svg-icons';
 
 export const icons = {
@@ -49,6 +50,7 @@ export const icons = {
     phone: faPhone,
     // Solid Icons
     link: faLink,
+    video: faVideo,
     email: faEnvelope,
     code: faCode,
     work: faBriefcase,

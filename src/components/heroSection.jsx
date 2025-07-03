@@ -134,7 +134,7 @@ const HeroSection = ({ onScrollToProjects }) => {
 
                 <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mt-6">
                     <a
-                        href='https://drive.usercontent.google.com/download?id=1LTxxuAetY94qhPZgo9XeFFrZ3oiempUA&export=download&authuser=0&confirm=t&uuid=345745c2-2f69-4094-911b-26fcba460027&at=AEz70l6slISazWWy8MMr7mKJh4Ct:1740492798930'
+                        href='https://drive.usercontent.google.com/u/0/uc?id=12EP3FgvP32TSiP71rrI6nOfgehilSWjw&export=download'
                         className='bg-[#A71B10] text-white font-bold px-6 py-3 rounded-full hover:bg-black transition-all duration-300 text-center shadow-md hover:shadow-lg'
                     >
                         Download CV

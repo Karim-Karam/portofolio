@@ -21,6 +21,33 @@ const ProjectsSection = () => {
         },
         {
             id: 2,
+            image: 'images/medyour.png', // The image is now used as the thumbnail
+            video: '/videos/med.mp4',   // The path to the video for the modal
+            name: 'medyour',
+            description: 'A comprehensive Medical Portal designed to streamline healthcare access, offering seamless  and personalized health management for users and corporate employees.',
+            technologies: [],
+            hasMui: true,
+            hasNext: true,
+            hasTailwind: true,
+            hasTs: true,
+            link: 'https://portal.medyour.com/'
+        },
+        {
+            id: 3,
+            image: 'images/droub.png', // The image is now used as the thumbnail
+            video: '/videos/durob.mp4',   // The path to the video for the modal
+            name: 'Duroob Al-majd',
+            description: 'a customizable Arabic-language dashboard using Next.js (React) and Firebase to manage customer data and dynamic questionnaires, later integrated into a Unity-based game.',
+            technologies: [],
+            hasMui: true,
+            hasNext: true,
+            hasTailwind: true,
+            hasFire: true,
+            hasTs: true,
+            link: 'https://droobalmjd.netlify.app/'
+        },
+        {
+            id: 4,
             image: 'images/siminds.png',
             video: null, // This project does not have a video, so the button won't show
             name: 'Siminds',
@@ -29,7 +56,7 @@ const ProjectsSection = () => {
             link: 'https://www.siminds.com/'
         },
         {
-            id: 3,
+            id: 5,
             image: 'images/errcf.png',
             video: null,
             name: 'Egyptian Robotics & RC Sports Federation',
@@ -40,7 +67,7 @@ const ProjectsSection = () => {
             link: 'https://staging.errcsf.org/'
         },
         {
-            id: 4,
+            id: 6,
             image: 'images/arcon.png',
             video: null,
             name: 'Arcon',
@@ -50,7 +77,7 @@ const ProjectsSection = () => {
             link: 'https://www.arconcorp.com/'
         },
         {
-            id: 5,
+            id: 7,
             image: 'images/movies.png',
             video: null,
             name: 'Movies App',
@@ -59,7 +86,7 @@ const ProjectsSection = () => {
             link: 'https://cimaforu.netlify.app/'
         },
         {
-            id: 6,
+            id: 8,
             image: 'images/market.png',
             video: null,
             name: 'E-Commerce Site',

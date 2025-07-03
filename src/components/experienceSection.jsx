@@ -5,13 +5,20 @@ const ExperirnceSection = () => {
     const works = [
         {
             id: 1,
+            organization: 'Freelance',
+            title: 'Freelance Full-Stack Developer',
+            description: ' Developed a customizable Arabic-language dashboard using Next.js (React) and Firebase  to manage customer data and dynamic questionnaires, later integrated into a Unity-based game.',
+            date: '04/25 - 06/25',
+        },
+        {
+            id: 2,
             organization: 'ARCON ME',
             title: 'FRONT END  Developer',
             description: 'As a Front-End Developer specializing in React and Next.js, I design, develop, and maintain responsive web applications, including LMS and medical platforms, collaborating with cross-functional teams to deliver user-centric,high-performance solutions.',
             date: '01/23 - PRESENT',
         },
         {
-            id: 2,
+            id: 3,
             organization: 'EGYPTIAN ARMY',
             title: 'OFFICER',
             description: 'Served as an officer in the Egyptian Army, leading and managing teams in high-pressure environments. Gained expertise in strategic planning, operations, discipline, and teamwork while ensuring mission success and maintaining security and efficiency in military operations.',
